@@ -1,0 +1,26 @@
+**Cara Menghapus Kolom Tabel MySQL**
+
+Kebalikan dari menambahkan kolom baru, query ALTER…DROP dapat digunakan untuk menghapus sebuah kolom dari tabel MySQL.
+
+`ALTER TABLE nama_tabel DROP nama_kolom;`
+
+Mari kita contohkan dengan menghapus kolom ketua_jurusan dari tabel daftar_jurusan:
+
+Contoh query Alter…Drop:
+```sql
+mysql> ALTER TABLE daftar_jurusan DROP ketua_jurusan;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql> DESC daftar_jurusan;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| kode_jurusan     | char(5)      | YES  |     | NULL    |       |
+| nama_jurusan     | varchar(20)  | YES  |     | NULL    |       |
+| alamat_jurusan   | varchar(100) | YES  |     | NULL    |       |
+| jumlah_mahasiswa | mediumint(9) | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+```

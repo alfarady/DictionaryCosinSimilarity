@@ -1,0 +1,1 @@
+**CANDIDATE KEY** (Kunci Kandidat/Kunci calon)adalah satu atribute atau satu set minimal atribute yang mengidentifikasikan secara unik suatu kejadian specific dari entity. Jika satu kunci kandidat berisi lebih dari satu atribute, maka biasanya disebut sebagai composite key (kunci campuran/ gabungan).

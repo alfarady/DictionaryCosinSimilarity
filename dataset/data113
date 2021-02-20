@@ -1,0 +1,1 @@
+**MEDIUMINT** merupakan tipe data yang memiliki ukuran 3 byte. Bilangan bulat dengan jangkauan untuk bilangan bertanda : -8388608 s/ d 8388607 dan untuk yang tidak bertanda : 0 s/d 16777215.

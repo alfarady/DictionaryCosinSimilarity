@@ -1,0 +1,28 @@
+**Cara Menghapus Database MySQL**
+
+Jika database sudah tidak digunakan lagi, kita dapat menghapusnya. Proses penghapusan ini akan menghapus database, termasuk seluruh tabel dan isi dari tabel tersebut. Sebuah database yang telah dihapus tidak dapat ditampilkan kembali. Kita harus yakinkan bahwa database tersebut memang tidak akan digunakan lagi.
+
+Format query untuk menghapus database:
+
+`DROP DATABASE [IF EXISTS] database_name;`
+
+Sama seperti query pada pembuatan database, pilihan [IF EXISTS] digunakan untuk menghilangkan pesan error jika seandainya database tersebut memang tidak ada.
+
+Jika kita ingin menghapus database mahasiswa, contoh querynya adalah:
+```sql
+mysql> DROP DATABASE mahasiswa;
+ 
+Query OK, 0 rows affected (0.01 sec)
+```
+Jika kita berusaha menghapus database mahasiswa lagi (yang memang sudah tidak ada), akan muncul pesan error:
+```sql
+mysql> DROP DATABASE mahasiswa;
+ 
+ERROR 1008 (HY000): Can't drop database 'mahasiswa'; 
+database doesn't exist
+```
+Dengan menggunakan perintah opsional [IF EXISTS], pesan error tidak tampil:
+```sql
+mysql> DROP DATABASE IF EXISTS mahasiswa;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+```

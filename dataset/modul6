@@ -1,0 +1,21 @@
+**Cara Melihat Daftar Database MySQL**
+Di dalam MySQL Server, biasanya akan terdapat beberapa database, tergantung kebutuhan kita. Untuk melihat seluruh database yang berada pada MySQL Server, gunakan query:
+
+```sql
+SHOW DATABASES;
+```
+```sql
+mysql> SHOW DATABASES;
+ 
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mahasiswa          |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+```
+Kita dapat melihat bahwa MySQL Server telah berisi beberapa database bawaan, selain database mahasiswa yang kita buat sebelumnya.

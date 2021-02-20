@@ -1,0 +1,1 @@
+**SMALLINT** merupakan tipe data yang memiliki ukuran 2 Byte. Bilangan bulat dengan jangkauan untuk bilangan bertanda : -32768 s/d 32767 dan untuk yang tidak bertanda : 0 s/d 65535.

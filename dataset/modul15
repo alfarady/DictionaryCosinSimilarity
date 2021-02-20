@@ -1,0 +1,58 @@
+**Tipe Floating Point : FLOAT dan DOUBLE**
+
+Jika pada tipe fixed point kita mendefiniskan suatu kolom dengan nilai pecahan yang tetap, untuk tipe floating point, nilai pecahan yang dapat diinput bisa berbeda-beda. Untuk tipe floating point, MySQL menyediakan 2 jenis tipe data, yaitu FLOAT dan DOUBLE. Perbedaan keduanya terletak pada presisi (ketelitian) pembulatan. FLOAT menggunakan single-precision, sedangkan DOUBLE menggunakan  double-precision.
+
+
+> Tipe Floating Point juga diperuntukkan untuk nilai desimal, perbedaan antara Fixed Point dengan Floating Point lebih kedalam arsitektur (cara perhitungannya pada prosesor komputer) dan ketelitian (presisi) yang digunakan. Tentang perbedaan fixed dan floating point tidak akan kita bahas, namun setidaknya kita mengetahui bahwa MySQL menyediakan tipe data untuk keduanya.
+
+| Tipe  | Jangkauan  | Ukuran  |
+| ------------ | ------------ | ------------ |
+|  FLOAT  | -3.402823466E+38 to 3.402823466E+38  | 4 bytes  |
+| DOUBLE  | -1.7976931348623157E+308 to 1.7976931348623157E+308  | 8 bytes  |
+
+Untuk tipe data FLOAT dan DOUBLE, format querynya adalah:
+`FLOAT[(M,D)] [UNSIGNED] [ZEROFILL]`
+
+`DOUBLE[(M,D)] [UNSIGNED] [ZEROFILL]`
+Sama seperti pada tipe data DECIMAL, nilai opsional query [M, D] dimana M adalah total jumlah digit keseluruhan, dan D adalah jumlah digit dibekang koma (pecahan). Maksimal nilai M dan D akan berbeda pada tiap komputer, tergantung kemampuan prosesor mengolah tipe data floating point. FLOAT biasanya akan akurat untuk penyimpanan sekitar 7 angka desimal, sedangkan DOUBLE mencapai 15 angka desimal.
+
+Opsional query UNSIGNED jika di nyatakan, akan menghilangkan kemampuan tipe data untuk meyimpan angka negatif (tidak menambah jangkauan sebagaimana tipe data integer)
+
+Opsional query ZEROFILL sama seperti integer, akan mengisi angka 0 pada bagian kiri angka.
+
+Contoh pendefinisan tipe data floating point:
+```sql
+mysql> CREATE TABLE contoh_float (satuan FLOAT(3,2), puluhan FLOAT(4,2), 
+ribuan FLOAT(5,2), positif DOUBLE ZEROFILL UNSIGNED, 
+cantik DOUBLE(8,2) ZEROFILL);
+ 
+Query OK, 0 rows affected (1.21 sec)
+ 
+mysql> DESCRIBE contoh_float;
++---------+-------------------------------+------+-----+---------+-------+
+| Field   | Type                          | Null | Key | Default | Extra |
++---------+-------------------------------+------+-----+---------+-------+
+| satuan  | float(3,2)                    | YES  |     | NULL    |       |
+| puluhan | float(4,2)                    | YES  |     | NULL    |       |
+| ribuan  | float(5,2)                    | YES  |     | NULL    |       |
+| positif | double unsigned zerofill      | YES  |     | NULL    |       |
+| cantik  | double(8,2) unsigned zerofill | YES  |     | NULL    |       |
++---------+-------------------------------+------+-----+---------+-------+
+5 rows in set (0.04 sec)
+ 
+mysql> INSERT INTO contoh_float values ((1.3), (55.32), (523.77), 
+(7832.3), (150000.45));
+ 
+Query OK, 1 row affected (0.15 sec)
+ 
+mysql> SELECT * FROM contoh_float;
++--------+---------+--------+------------------------+-----------+
+| satuan | puluhan | ribuan | positif                | cantik    |
++--------+---------+--------+------------------------+-----------+
+|   1.30 |   55.32 | 523.77 | 00000000000000007832.3 | 150000.45 |
++--------+---------+--------+------------------------+-----------+
+1 row in set (0.00 sec)
+```
+
+
+> Karena tipe data floating point menggunakan pendekatan nilai, menggunakan tipe data ini untuk perbandingan akan menyebabkan masalah. Hal ini disebabkan cara penyimpanan arsitektur prosesor dalam menangani tipe floating point, bukan semata-mata permasalahan pada MySQL. Pertimbangkan untuk menggunakan tipe data fixed point jika lebih membutuhkan presisi/ketelitian.

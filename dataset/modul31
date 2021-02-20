@@ -1,0 +1,16 @@
+**Cara Melihat Daftar Tabel dalam MySQL**
+Untuk melihat seluruh tabel yang ada pada database aktif saat ini, format querynya adalah:
+
+`SHOW TABLES;`
+
+Untuk contoh kita, karena baru ada 1 buah tabel, maka hasil eksekusi querynya adalah sebagai berikut:
+```sql
+mysql> SHOW TABLES;
+ 
++---------------------+
+| Tables_in_mahasiswa |
++---------------------+
+| data_mahasiswa      |
++---------------------+
+1 row in set (0.07 sec)
+```

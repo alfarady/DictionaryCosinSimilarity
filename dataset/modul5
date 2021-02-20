@@ -1,0 +1,38 @@
+**Cara Membuat database MySQL**
+
+Dalam penggunaannya sehari-hari, sebuah aplikasi biasanya hanya akan memiliki sebuah database. Di dalam MySQL (dan juga di dalam aplikasi relational database lainnya), Database adalah kumpulan dari tabel-tabel yang saling berhubungan. Database adalah tempat dimana tabel-tabel akan dibuat.
+
+Untuk membuat database, format penulisan querynya adalah:
+
+```sql 
+CREATE DATABASE [IF NOT EXISTS] nama_database
+```
+
+> Di dalam manual MySQL, dan juga di dalam tutorial ini, format perintah query yang terdapat di dalam kurung siku merupakan perintah optional, boleh diabaikan jika tidak diperlukan.
+Jika kita ingin membuat sebuah database mahasiswa, maka querynya adalah:
+
+
+``` sql
+mysql> CREATE DATABASE mahasiswa;
+ 
+Query OK, 1 row affected (0.00 sec)
+```
+Tambahan query  [IF NOT EXISTS] digunakan untuk membuat MySQL tidak menampilkan pesan error jika database tersebut telah ada sebelumnya dalam database.
+
+Contohnya, jika kita menjalankan lagi query untuk membuat database mahasiswa, MySQL akan menampilkan pesan error.
+
+```sql
+mysql> CREATE DATABASE mahasiswa;
+ 
+ERROR 1007 (HY000): Can't create database 'mahasiswa'; 
+database exists
+```
+Pesan error ini berguna untuk kita mengidentifikasi kesalahan, namun apabila kita membuat kode query yang panjang untuk dieksekusi secara keseluruhan (kita akan mempelajarinya nanti), pesan error akan menyebabkan query  berhenti diproses.
+
+Format [IF NOT EXISTS] akan membuat database jika database itu belum ada sebelumnya. Jika sudah ada,  query CREATE DATABASE tidak akan menghasilkan apa-apa (database yang lama tidak akan tertimpa).
+
+```sql
+mysql> CREATE DATABASE IF NOT EXISTS mahasiswa;
+ 
+Query OK, 1 row affected, 1 warning (0.00 sec)
+```

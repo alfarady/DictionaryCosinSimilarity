@@ -1,0 +1,1 @@
+**MODEL DATA LOGIS** (Logical Data Model / LDM ) merupakan versi RDBMS khusus yang independen dariPDM.Model ini digunakan sebagai jembatan antara CDM dan PDM. Melalui LDM memungkinkan sistem analist untukk menyelesaikan relasi banyak - ke-banyak, hubungan super atau sub tipe , denormalisasi struktur basis data dan menentukan indeks tanpa menggunakan RDBMS tertentu.

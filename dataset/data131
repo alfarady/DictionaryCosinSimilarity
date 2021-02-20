@@ -1,0 +1,1 @@
+**TINYBLOB**, **TINYTEXT** merupakan tipe data yang memiliki ukuran 255 byte. Mampu menangani data sampai 2^8-1 data. 

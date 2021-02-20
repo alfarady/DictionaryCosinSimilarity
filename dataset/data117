@@ -1,0 +1,1 @@
+**BINARY** merupakan tipe data BINARY yang dapat menerima data BINARY dengan maksimum 8000 bytes data. Tipe data ini diinterpretasikan sebagai string dari bit. dan berfungsi untuk menyimpan bit pattern seperti heksadecimal.

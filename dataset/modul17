@@ -1,0 +1,46 @@
+**Tipe Data BINARY dan VARBINARY dalam MySQL**
+
+Pada dasarnya tipe data BINARY dan VARBINARY sama dengan CHAR dan VARCHAR, perbedaannya hanya pada struktur peyimpanan dalam MySQL, dimana tipe data binary akan disimpan secara biner (bit per bit), bukan secara karakter seperti CHAR. Sederhananya, hal ini akan berefek pada case-sensitif data (perbedaan penggunaan huruf besar dan huruf kecil).
+
+Pada tipe data CHAR, jika kita menyimpan data ‘A’, maka secara internal MySQL akan menyimpannya sebagai karakter ‘A’, dimana ‘A’ akan sama dengan ‘a’. Namun untuk tipe data BINARY, ‘A’ akan disimpan sebagai bit dari ‘A’, yaitu 65, dan akan berbeda dengan ‘a’, dimana nilai binernya adalah 97.
+
+Format query tipe data BINARY dan VARBINARY:
+
+`BINARY [(M)]`
+
+`VAR BINARY [(M)]`
+
+Dimana sama seperti tipe data CHAR dan VARCHAR, M adalah jumlah karakter yang akan dialokasikan oleh MySQL. Misalkan nilai M adalah 5, maka MySQL menyediakan 5 karakter untuk kolom tersebut. Nilai M maksimal 255 karakter untuk BINARY, dan 65,535 karakter untuk VARBINARY. Jika nilai M tidak di nyatakan, nilai defaultnya adalah 1.
+
+BINARY akan disimpan dalam ukuran yang tetap, sedangkan VARBINARY akan berubah sesuai ukuran data (sama dengan perbedaan antara CHAR dan VARCHAR)
+
+Contoh query membuat tabel dengan tipe data BINARY dan VARBINARY :
+```sql
+mysql> CREATE TABLE contoh_bin (bin BINARY(5), 
+varbin VARBINARY(5));
+Query OK, 0 rows affected (0.08 sec)
+ 
+mysql> INSERT INTO contoh_bin values ('dunia','dunia');
+Query OK, 1 row affected (0.04 sec)
+ 
+mysql> SELECT * FROM contoh_bin;
++-------+--------+
+| bin   | varbin |
++-------+--------+
+| dunia | dunia  |
++-------+--------+
+1 row in set (0.00 sec)
+ 
+mysql> SELECT * FROM contoh_bin where bin='dunia';
++-------+--------+
+| bin   | varbin |
++-------+--------+
+| dunia | dunia  |
++-------+--------+
+1 row in set (0.00 sec)
+ 
+mysql> SELECT * FROM contoh_bin where bin='DUNIA';
+Empty set (0.00 sec)
+```
+
+Perhatikan bahwa pada query terakhir, tidak menampilkan hasil apa-apa, karena dalam BINARY, ‘dunia’ tidak sama dengan ‘DUNIA’.

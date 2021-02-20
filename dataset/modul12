@@ -1,0 +1,21 @@
+**Tipe Data Integer MySQL: Tinyint , Smallint, Mediumint, Integer (Int), dan Bigint**
+Integer adalah tipe data untuk angka bulat (misalnya: 1,6, 59, -533, 1449). MySQL menyediakan beberapa tipe data untuk integer, perbedaannya lebih kepada jangkauan yang juga berpengaruh terhadap ukuran tipe data tersebut.
+
+Jangkauan serta ukuran penyimpanan tipe data integer dalam MySQL dapat dilihat dari tabel dibawah ini:
+
+| Tipe Data  |  Jangkauan SIGNED | Jangkauan UNSIGNED  | Ukuran  |
+| ------------ | ------------ | ------------ | ------------ |
+| TINYINT  | -128 to 127  |  0 to 255 | 1 byte  |
+| SMALLINT  | -32,768 to 32,767  | 0 to 65,535  |  2 bytes |
+|  MEDIUMINT | -8,388,608 to 8,388,607  | 0 to 16,777,215  | 3 bytes  |
+| INT  | -2,147,483,648 to 2,147,483,647  | 0 to 4,294,967,295  |  4 bytes |
+| BIGINT  | -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  | 0 to18,446,744,073,709,551,615  | 8 bytes  |
+
+> Selain INT, kita dapat juga menuliskan INTEGER dalam query MySQL, keduanya sama persis, hanya beda pada penamaan.
+
+Pemilihan tipe data ini tergantung akan kebutuhan data kita. Misalkan untuk nomor urut absensi pada suatu kelas yang memiliki maksimal 30 orang, tipe data TINYINT sudah mencukupi. Namun jika kita bermaksud membuat absensi seluruh rakyat indonesia, tipe data TINYINT sampai dengan MEDIUMINT tidak akan mencukupi. Kita harus memilih INT atau BIGINT.
+
+
+> Idealnya, sedapat mungkin kita menggunakan tipe data paling kecil, karena menyangkut dengan ukuran dari database. Menggunakan INT untuk jumlah anggota keluarga seseorang mungkin tidak efisien. Namun lebih baik mengantisipasi besarnya data sedapat mungkin pada awal pembuatan database.
+
+> Perubahan tipe data disaat aplikasi telah diimplementasikan akan berpotensi membuat sebagian data hilang, atau aplikasi gagal berjalan. Dengan ukuran media penyimpanan yang semakin besar dan murah, mengorbankan ukuran demi aplikasi yang handal bukan sesuatu yang buruk.Perubahan tipe data disaat aplikasi telah diimplementasikan akan berpotensi membuat sebagian data hilang, atau aplikasi gagal berjalan. Dengan ukuran media penyimpanan yang semakin besar dan murah, mengorbankan ukuran demi aplikasi yang handal bukan sesuatu yang buruk.

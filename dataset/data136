@@ -1,0 +1,1 @@
+**SET**(‘nilai1’,’nilai2’,…,’nilaiN’) merupakan tipe data yang memiliki ukuran  1,2,3,4 atau 8 byte, tergantung jumlah anggota himpunan (maksimum 64 anggota).

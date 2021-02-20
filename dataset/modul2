@@ -1,0 +1,13 @@
+**Cara Merubah Tampilan output MySQL**
+Untuk perintah MySQL (query MySQL) yang menghasilkan output yang panjangnya melebihi layar cmd, akan sulit bagi kita dalam membacanya. MySQL menyediakan cara untuk merubah tampilan tabel menjadi baris.
+
+Untuk merubah tampilan output MySQL menjadi baris, tambahkan tanda “\G” (huruf G besar, bukan g kecil) setelah perintah query. Berikut adalah contoh penggunaannya dalam MySQL:
+```sql
+mysql> SELECT NOW(),USER(),VERSION()\G
+
+*************************** 1. row ***************************
+    NOW(): 2014-11-13 09:23:41
+   USER(): root@localhost
+VERSION(): 5.6.21-log
+1 row in set (0.00 se
+```

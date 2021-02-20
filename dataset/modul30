@@ -1,0 +1,70 @@
+**Cara Merubah Tipe Data Table (Table Engine) MySQL**
+
+MySQL menyediakan beberapa tipe data untuk beberapa keperluan, seperti tipe data (disebut juga dengan engine tabel) MyISAM untuk tabel yang dioptimalisasikan untuk keperluan pembacaan yang lebih sering, atau tipe data InnoDB untuk tabel yang memerlukan transaksi.
+
+Perubahan tipe data dari MyISAM ke InnoDB atau sebaliknya dapat menggunakan perintah ALTER…ENGINE:
+
+`ALTER TABLE nama_tabel ENGINE = tipe_tabel;`
+
+Dalam MySQL versi 5.5 yang saya gunakan pada tutorial ini, default enginenya adalah InnoDB, hal ini berbeda jika dibandingkan dengan versi MySQL sebelumnya yang menggunakan tipe tabel MyISAM sebagai default.
+
+Pada contoh query dibawah ini kita akan merubah tipe data tabel daftar_jurusan dari InnoDB menjadi MyISAM.
+
+Contoh query Alter…Engine:
+```sql
+mysql> SHOW TABLE STATUS WHERE NAME='daftar_jurusan' \G;
+ 
+***************************1.row***************************
+Name: daftar_jurusan
+Engine: InnoDB
+Version: 10
+Row_format: Compact
+Rows: 0
+Avg_row_length: 0
+Data_length: 16384
+Max_data_length: 0
+Index_length: 0
+Data_free: 9437184
+Auto_increment: NULL
+Create_time: 2013-04-14 21:20:02
+Update_time: NULL
+Check_time: NULL
+Collation: latin1_swedish_ci
+Checksum: NULL
+Create_options:
+Comment:
+1 row in set (0.00 sec)
+ERROR:
+No query specified
+ 
+mysql> ALTER TABLE daftar_jurusan ENGINE = MyISAM;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+ 
+mysql> SHOW TABLE STATUS WHERE NAME='daftar_jurusan' \G;
+ 
+***************************1.row***************************
+Name: daftar_jurusan
+Engine: MyISAM
+Version: 10
+Row_format: Dynamic
+Rows: 0
+Avg_row_length: 0
+Data_length: 0
+Max_data_length: 281474976710655
+Index_length: 1024
+Data_free: 0
+Auto_increment: NULL
+Create_time: 2013-04-14 22:43:29
+Update_time: 2013-04-14 22:43:29
+Check_time: NULL
+Collation: latin1_swedish_ci
+Checksum: NULL
+Create_options:
+Comment:
+1 row in set (0.00 sec)
+ERROR:
+No query specified
+mysql>
+```
+Query SHOW TABLE STATUS digunakan untuk melihat engine apa yang digunakan dalam sebuah tabel.

@@ -1,0 +1,19 @@
+**Cara Menghapus Tabel MySQL**
+Format query untuk menghapus tabel adalah:
+
+`DROP TABLE[IF EXISTS] table_name [, table_name,...]`
+
+Query opsional [IF EXISTS] digunakan untuk menghilangkan pesan error jika tabel yang akan dihapus memang sudah tidak ada.
+
+Dari format query DROP TABLE, dapat dilihat bahwa dalam satu query, kita dapat menghapus beberapa tabel sekaligus.
+
+Untuk menghapus tabel data_mahasiswa, querynya adalah:
+
+```sql
+mysql> DROP TABLE data_mahasiswa;
+ 
+Query OK, 0 rows affected (0.05 sec)
+```
+Setelah membuat database dan tabel dalam MySQL, untuk tutorial selanjutnya kita akan membahas tipe data yang digunakan dalam setiap tabel MySQL.
+
+MySQL menyediakan berbagai tipe data sesuai dengan keperluan data yang akan kita input kedalam tabel.

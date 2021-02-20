@@ -1,0 +1,52 @@
+**Cara Penulisan Tipe Data Integer MySQL**
+Format query untuk tipe data integer adalah:
+
+`INT[(M)] [UNSIGNED] [ZEROFILL]`
+
+Setiap tipe data integer dapat di definisikan sebagai UNSIGNED, dimana kita mengorbankan nilai negatif, untuk mendapatkan jangkauan nilai positif yang lebih tinggi.
+
+Dalam deklarasi tipe data integer, nilai M adalah jumlah digit yang disediakan untuk menampilkan data. Misalnya kita mendefiniskan suatu kolom dengan INT(5), jika kita input angka 102, maka MySQL akan menambahkan spasi sebanyak 2 buah di depan angka, agar tampilan data menjadi 5 digit (istilah pemogramannya : padding left).
+
+Nilai M tidak mempengaruhi nilai maksimal dari integer. Jika angka yang diinputkan melebihi digit M, MySQL akan tetap menampilkan hasilnya (selama masih dalam jangkauan tipe data tersebut). Jika kita deklarasikan INT(4), nilai maksimal tetap 2,147,483,647 bukan 9999.
+
+Selain opsional query UNSIGNED, pendeklarasian integer juga terdapat opsional atribut ZEROFILL. ZEROFILL ini berhubungan dengan nilai M, yang akan mengisi angka 0 pada bagian kiri nilai yang diinput alih-alih spasi.
+
+Contoh query pembuatan tabel dengan deklarasi integer :
+```sql
+mysql> CREATE TABLE contoh_int (mini TINYINT,  kecil SMALLINT UNSIGNED, 
+sedang MEDIUMINT(4) ZEROFILL, biasa INT(4) UNSIGNED, 
+besar BIGINT(6) UNSIGNED ZEROFILL);
+ 
+Query OK, 0 rows affected (0.06 sec)
+ 
+mysql> DESC contoh_int;
++--------+--------------------------------+------+-----+---------+-------+
+| Field  | Type                           | Null | Key | Default | Extra |
++--------+--------------------------------+------+-----+---------+-------+
+| mini   | tinyint(4)                     | YES  |     | NULL    |       |
+| kecil  | smallint(5) unsigned           | YES  |     | NULL    |       |
+| sedang | mediumint(4) unsigned zerofill | YES  |     | NULL    |       |
+| biasa  | int(4) unsigned                | YES  |     | NULL    |       |
+| besar  | bigint(6) unsigned zerofill    | YES  |     | NULL    |       |
++--------+--------------------------------+------+-----+---------+-------+
+5 rows in set (0.21 sec)
+```
+Dari query DESC kita dapat melihat kolom mini dan kecil, secara otomatis akan bersisi nilai M, walaupun dalam deklarasi pembuatan tabel kita tidak menyatakannya secara langsung. Nilai ini didapat dari jangkauan terbesar tipe data tersebut
+
+Jika kita inputkan angka 122 kedalam seluruh kolom, hasilnya adalah sebagai berikut:
+```sql
+mysql> INSERT INTO contoh_int values ((122), (122), (122), 
+(122), (122));
+ 
+Query OK, 1 row affected (0.07 sec)
+ 
+mysql> SELECT * FROM contoh_int;
+ 
++------+-------+--------+-------+--------+
+| mini | kecil | sedang | biasa | besar  |
++------+-------+--------+-------+--------+
+|  122 |   122 |   0122 |   122 | 000122 |
++------+-------+--------+-------+--------+
+1 row in set (0.00 sec)
+```
+Untuk perintah INSERT dan SELECT, kita akan mempelajarinya lebih jauh pada tutorial berikutnya, query INSERT digunakan untuk input data ke dalam tabel, dan SELECT digunakan untuk menampilkan nilai dari tabel. Dari contoh diatas kita setidaknya mendapat gambaran bagaimana cara deklarasi tipe data integer. Perhatikan untuk kolom sedang dan besar, terdapat angka nol di depan angka. Hal ini karena kedua kolom tersebut kita deklarasikan sebagai ZEROFILL.

@@ -1,0 +1,1 @@
+**LONGBLOB**, **LONGTEXT** merupakan tipe data yang memiliki ukuran 4294967295 byte. Mampu menyimpan data hingga berukuran GIGA BYTE. Tipe data ini memiliki batas penyimpanan hingga 2^32-1 (4G-1) data.

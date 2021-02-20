@@ -1,0 +1,12 @@
+**Cara Memilih dan Menggunakan Database MySQL**
+Kita harus memilih sebuah database yang akan digunakan, format query untuk memilih database ini adalah:
+
+`USE nama_database;`
+
+nama_database adalah database yang akan kita gunakan. Jika kita ingin menggunakan database mahasiswa, maka querynya adalah:
+```sql
+mysql> USE mahasiswa;
+ 
+Database changed
+```
+Selanjutnya setiap query pembuatan tabel misalnya, akan membuat sebuah tabel didalam database terpilih, dalam hal ini database mahasiswa.

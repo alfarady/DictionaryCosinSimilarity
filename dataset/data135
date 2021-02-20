@@ -1,0 +1,1 @@
+**ENUM**(‘nilai1’,’nilai2’,…,’nilaiN’) merupakan tipe data yang memiliki ukuran 1 atau 2 byte. Tergantung jumlah nilai enumerasinya (maksimum 65535 nilai)

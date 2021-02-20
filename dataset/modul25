@@ -1,0 +1,24 @@
+**Cara Merubah Tipe Data Kolom MySQL**
+
+Sesaat setelah membuat tabel daftar_jurusan, saya berfikir untuk merubah tipe data pada kolom jumlah_mahasiswa dari SMALLINT menjadi MEDIUMINT agar dapat menampung lebih banyak nilai. Perubahan ini dapat dilakukan dengan mengunakan query ALTER…MODIFY sebagai berikut:
+
+`ALTER TABLE nama_tabel MODIFY nama_kolom tipe_data_baru;`
+
+Contoh query Alter…Modify:
+
+```sql
+mysql> ALTER TABLE daftar_jurusan MODIFY jumlah_mahasiswa MEDIUMINT;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> DESC daftar_jurusan;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| kode_jurusan     | char(5)      | YES  |     | NULL    |       |
+| nama_jurusan     | varchar(20)  | YES  |     | NULL    |       |
+| alamat           | varchar(100) | YES  |     | NULL    |       |
+| jumlah_mahasiswa | mediumint(9) | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+```
+Dari query DESC kita dapat melihat bahwa tipe data pada kolom jumlah_mahasiswa telah berubah menjadi MEDIUMINT.

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/editormd.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+    <title>Pintar Basdat | Kamus Basis Data</title>
+
+    <style>
+      pre {
+        overflow-x: auto;
+      }
+    </style>
+</head>
+<body class="overflow-x-hidden" style="background-color: #EFFBF5;">
+    <div x-data="doSearch()" class="h-full flex flex-col items-center justify-center p-5 space-y-3 lg:mt-32 mt-5 lg:px-10 px-3">
+    
+      <img src="{{ url_for('static',filename='logo.png') }}" />
+      <span class="lg:w-2/5 w-full text-center">Hai! Selamat datang di website Kamus Pintar Basdat! Disini kamu bisa cari istilah kata apa saja tentang pelajaran Basis Data, lho! Yuk, masukan kata yang ingin kamu ketahui!</span>
+
+      <div class="w-full flex lg:flex-row flex-col items-center justify-center lg:space-x-3 space-x-1 space-y-2 lg:space-y-0">
+        <input id="query" class="border hover:shadow-xl rounded-full py-3 px-6 focus:outline-none lg:w-3/5 w-full" placeholder="Cari disini" />
+        <button @click="changeLoading()" class="rounded-full h-12 lg:w-12 w-full bg-green-500 hover:shadow-xl focus:outline-none text-white flex items-center justify-center"><i data-feather="search"></i><b class="lg:hidden">Cari</b></button>
+      </div>
+    
+      <div x-show.transition.opacity.duration.400ms="isLoading" id="loading-animation" class="py-5 flex flex-col justify-center items-center">
+        <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150 cursor-not-allowed" disabled="">
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Processing
+        </button>
+      </div>  
+
+      <div id="query-result" class="hidden lg:w-11/12 w-full pb-10">
+        <div class="w-full flex flex-col">
+          <span class="font-medium">Hasil Pencarian</span>
+          <i id="result-text" x-text="resultText" class="hidden text-sm mb-3" style="color: dimgrey;"></i>
+          <div id="result-container" class="space-y-3">
+          </div>
+        </div>
+      </div>
+
+      <div class="sticky z-50 bottom-8 right-2 w-full flex justify-end items items-center">
+        <button class="flex bg-green-500 rounded-full py-3 px-6 text-white font-medium space-x-2 focus:outline-none"><i data-feather="message-square"></i><span>Chat</span></button>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+    <script src="{{ url_for('static',filename='lib/marked.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='lib/prettify.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='lib/raphael.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='lib/underscore.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='lib/sequence-diagram.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='lib/flowchart.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='lib/jquery.flowchart.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='editormd.min.js') }}"></script>
+    <script>
+      feather.replace()
+    </script>
+    <script>
+      function doSearch() {
+          return {
+            isLoading: false,
+            resultData: [],
+            resultText: 'Tidak ditemukan data',
+            changeLoading(){
+                this.isLoading = !this.isLoading;
+                this.makeSearch();
+            },
+            makeSearch() {
+                setTimeout(() => {
+                    try {
+                      let query = document.getElementById('query').value;
+
+                      if(query === ""){
+                          alert("Insert your text");
+                      }else{
+                          document.getElementById("query-result").className = "hidden";
+                          document.getElementById("result-text").className = "hidden";
+                          document.getElementById("result-container").innerHTML = "<div></div>";
+                          document.getElementById("loading-animation").className = "py-5 flex flex-col justify-center items-center";
+
+                          (async () => {
+                              const response = await axios.get(`/${query}`);
+                              let data = response.data.data
+                              let totalData = response.data.totalData
+
+                              if(data.length > 0) {
+                                  for (const item of data) {
+                                    let html = `<div id="${item.file}" class="w-full bg-white text-black rounded-lg border shadow-2xl p-3">` +
+                                      `<textarea id="append-test" class="w-full hidden">${item.content}</textarea>` +
+                                    '</div>'
+                                    $('#result-container').append(html)
+                                  }
+
+                                  this.resultData = data
+                                  this.resultText = `Ditemukan ${data.length} data dari ${totalData}`
+                                  this.replacer()
+                              }
+                          })()
+                          }
+                      } catch (error) {
+                          console.log(error)
+                      }
+                }, 500);
+            },
+            replacer() {
+              setTimeout(async () => {
+                for await (const item of this.resultData) {
+                  editormd.markdownToHTML(item.file, {
+                    htmlDecode      : "style,script,iframe",
+                    emoji           : true,
+                    taskList        : true,
+                    tex             : true,
+                    flowChart       : true,
+                    sequenceDiagram : true,
+                  })
+                }
+                document.getElementById("query-result").className = "lg:w-11/12 w-full pb-10";
+                document.getElementById("loading-animation").className = "hidden";
+                document.getElementById("result-text").className = "text-sm mb-3";
+                this.isLoading = !this.isLoading;
+              }, 500)
+            }
+          }
+      }
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+**Tipe data CHAR dan VARCHAR MySQL**
+Tipe data CHAR dan VARCHAR adalah tipe data karakter (string) yang akan sering kita gunakan.
+
+Format query tipe data CHAR dan VARCHAR:
+
+`CHAR [(M)]`
+
+`VARCHAR [(M)]`
+
+Dimana M adalah jumlah karakter yang akan dialokasikan oleh MySQL. Misalkan nilai M=5, maka MySQL menyediakan 5 karakter untuk kolom tersebut. Nilai maksimal M adalah 255 karakter untuk CHAR, dan 65,535 karakter untuk VARCHAR. Jika nilai M tidak di nyatakan, nilai defaultnya M=1.
+**
+Perbedaan antara CHAR dan VARCHAR **adalah dari cara MySQL mengalokasikan ukuran penyimpanan data yang diinput kedalam kolom tersebut. Contohnya, jika kita mendefiniskan sebuah tabel dengan kolom bertipe CHAR(5), walaupun huruf atau karakter yang kita inputkan hanya 1 karakter, MySQL tetap menyimpan kolom tersebut untuk 5 karakter. Namun jika kita definiskan sebagai VARCHAR(5), dan kita menginput data dengan jumlah karakter 2, maka ukuran penyimpanan hanya akan menggunakan 2 karakter, sehingga VARCHAR lebih fleksibel dan efisien.
+
+Tetapi untuk fleksibilitas ini, tipe VARCHAR memerlukan proses tambahan untuk menyimpan ukuran dari masing-masing data. Sehingga VARCHAR akan sedikit lebih lambat bila dibandingkan CHAR. Walaupun demikian, proses ini hampir tidak terdeteksi, anda bebas menggunakan CHAR atau VARCHAR untuk tipe data string.
+
+ HomeTutorial MySQLTutorial Belajar MySQL Part 14: Tipe Data String (Huruf) MySQL
+Tutorial Belajar MySQL Part 14: Tipe Data String (Huruf) MySQL20 Oct 12 | Andre | Tutorial MySQL | 43 Comments
+
+ 
+Tipe data selanjutnya yang akan kita pelajari setelah Tutorial Belajar MySQL: Tipe Data Numerik adalah tipe data karakter atau huruf (dalam permograman sering disebut tipe data string).
+
+MySQL menyediakan beberapa tipe data string: CHAR, VARCHAR, BINARY, VARBINARY, TEXT dan BLOB. Perbedaan dari tipe data ini adalah dari ukuran, cara penyimpanan, dan dukungan case-sensitif (perbedaan huruf besar dan kecil). Kita akan membahasnya secara mendetail dalam tutorial belajar MySQL: Tipe Data String (Huruf) MySQL kali ini.
+
+Tipe data CHAR dan VARCHAR MySQL
+Tipe data CHAR dan VARCHAR adalah tipe data karakter (string) yang akan sering kita gunakan.
+
+Format query tipe data CHAR dan VARCHAR:
+
+CHAR [(M)]
+VARCHAR [(M)]
+Dimana M adalah jumlah karakter yang akan dialokasikan oleh MySQL. Misalkan nilai M=5, maka MySQL menyediakan 5 karakter untuk kolom tersebut. Nilai maksimal M adalah 255 karakter untuk CHAR, dan 65,535 karakter untuk VARCHAR. Jika nilai M tidak di nyatakan, nilai defaultnya M=1.
+
+Perbedaan antara CHAR dan VARCHAR adalah dari cara MySQL mengalokasikan ukuran penyimpanan data yang diinput kedalam kolom tersebut. Contohnya, jika kita mendefiniskan sebuah tabel dengan kolom bertipe CHAR(5), walaupun huruf atau karakter yang kita inputkan hanya 1 karakter, MySQL tetap menyimpan kolom tersebut untuk 5 karakter. Namun jika kita definiskan sebagai VARCHAR(5), dan kita menginput data dengan jumlah karakter 2, maka ukuran penyimpanan hanya akan menggunakan 2 karakter, sehingga VARCHAR lebih fleksibel dan efisien.
+
+Tetapi untuk fleksibilitas ini, tipe VARCHAR memerlukan proses tambahan untuk menyimpan ukuran dari masing-masing data. Sehingga VARCHAR akan sedikit lebih lambat bila dibandingkan CHAR. Walaupun demikian, proses ini hampir tidak terdeteksi, anda bebas menggunakan CHAR atau VARCHAR untuk tipe data string.
+
+
+ 
+Contoh perbedaan antara CHAR dan VARCHAR dapat kita lihat dari tabel dibawah ini:
+
+| DATA  | CHAR(5)  | Ukuran Penyimpanan  | VARCHAR(5)  | Ukuran Penyimpanan  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| '  '  | '  '  |  5 byte  | '  '  | 1 byte  |
+|  'du' | 'du'  | 5 byte  | 'du'  | 3 byte  |
+| 'dunia'  |  'dunia'  | 5 byte   | 'dunia'   | 6 byte  |
+| 'duniailkom'  |  'duniailkom'  | 5 byte   |  'duniailkom'  | 6 byte  |
+
+Dari tabel diatas, kita dapat melihat bahwa ukuran penyimpanan untuk VARCHAR berubah-ubah tergantung data yang diinput. Namun sebenarnya VARCHAR membutuhkan 1 byte tambahan untuk menyimpan panjang data. Jika kita definiskan VARCHAR(5) dan menginputkan ‘dunia’, maka akan membutuhkan 5+1 byte. Berbeda dengan CHAR(5) yang tidak membutuhkan tambahan byte.
+
+Jadi, kebutuhan akan tipe data antara CHAR dan VARCHAR bergantung kepada seperti apa data yang akan kita input. Tipe data CHAR cocok digunakan untuk kolom yang memiliki jumlah karakter tetap, misalnya untuk nomor KTP, ID pelanggan dan NIM mahasiswa. Sedangkan tipe data VARCHAR akan lebih cocok digunakan untuk kolom yang berisi data yang berbeda-beda ukuran, seperti nama, alamat dan kota.
+
+Baik CHAR maupun VARCHAR data yang diinput akan disimpan secara case insensitif, dimana huruf besar dan kecil tidak dibedakan.
+
+Untuk tipe data CHAR, jika kita menginputkan data dengan spasi dibelakangnya, misalnya ‘aku   ’ (terdapat 3 spasi setelah ‘aku’), maka sewaktu menampilkan data, spasi tersebut akan otomastis dihapus oleh MySQL, menjadi‘aku’. Pertimbangkan menggunakan VARCHAR jika hal ini anda butuhkan, dimana VARCHAR akan tetap menampilkan ‘aku   ’.
+
+Contoh query membuat tabel dengan tipe data CHAR dan VARCHAR :
+```sql
+mysql> CREATE TABLE contoh_cha (cha CHAR(5), 
+varcha VARCHAR(5));
+Query OK, 0 rows affected (0.06 sec)
+ 
+mysql> INSERT INTO contoh_cha values ('a  ','a  ');
+Query OK, 1 row affected (0.05 sec)
+mysql> INSERT INTO contoh_cha values ('dunia','dunia');
+Query OK, 1 row affected (0.05 sec)
+mysql> INSERT INTO contoh_cha values ('duniailkom','duniailkom');
+ERROR 1406 (22001): Data too long for column 'cha' at row 1
+ 
+mysql> SELECT * FROM contoh_cha;
++-------+--------+
+| cha   | varcha |
++-------+--------+
+| a     | a      |
+| dunia | dunia  |
++-------+--------+
+2 rows in set (0.00 sec)
+```
+
+
+> Sama seperti tipe data integer, sebelum mendefinisikan suatu kolom dengan CHAR(10) atau VARCHAR(10), sedapat mungkin kita sudah memprediksi data yang akan diinput kedalam kolom tersebut. Apakah 10 karakter cukup untuk menampung seluruh data yang akan diisi, atau apakah terdapat kemungkinan data yang diinput akan berisi 15 karakter.
+Merubah tipe kolom setelah implementasi akan membutuhkan usaha yang lebih dari pada memprediksinya di awal perancangan database.

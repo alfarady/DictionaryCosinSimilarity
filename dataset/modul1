@@ -1,0 +1,17 @@
+**Menjalankan Perintah (query) MySQL**
+
+Setiap perintah, atau sering juga disebut “query” di dalam MySQL harus diakhiri dengan tanda titik koma “;” dan akan dieksekusi setelah tombol Enter ditekan. Selama query MySQL belum diakhiri dengan “;” maka itu dianggap masih dalam satu perintah. Berikut ini cara menjalankan perintah query :
+
+1. Silahkan jalankan MySQL Server dan masuk sebagai user root dari MySQL Client 
+2. Setelah masuk ke dalam MySQL Client (ditandai dengan awalan mysql> pada jendela cmd), kita akan mencoba beberapa perintah MySQL sederhana. Ketikkan perintah berikut: SELECT NOW(); lalu akhiri dengan Enter pada keyboard.
+```sql
+mysql> SELECT NOW();
++---------------------+
+| NOW()               |
++---------------------+
+| 2014-11-13 09:21:08 |
++---------------------+
+1 row in set (0.69 sec)
+```
+
+Contoh query diatas adalah untuk menampilkan tanggal dan waktu saat ini dengan fungsi NOW(). Query tersebut akan menghasilkan hasil yang berbeda-beda tergantung saat anda menjalankannya.

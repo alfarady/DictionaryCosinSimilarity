@@ -1,0 +1,1 @@
+**PRIMARY KEY** adalah satu atribute atau satu set minimal atribute yang tidak hanya mengidentitikasi secara unik suatu kejadian spesific, tapi juga dapat mewakili setiap kejadian dari suatu entity. Setiap kunci kandidat punya peluang menjadi primary key, tetapi sebaiknya dipilih satu saja yang dapat mewakili secara menyeluruh terhadap entity yang ada.

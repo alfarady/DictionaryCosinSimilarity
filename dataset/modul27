@@ -1,0 +1,52 @@
+**Cara Merubah Nama Tabel MySQL**
+
+Untuk beberapa kasus tertentu, mungkin saja kita memutuskan untuk merubah nama tabel MySQL. Untuk hal ini MySQL menyediakan query ALTER…RENAME TO dengan format query:
+
+`ALTER TABLE nama_tabel_lama RENAME TO nama_tabel_baru;`
+
+Kita contohkan merubah tabel daftar_jurusan menjadi tabel_jurusan, maka querynya:
+
+Contoh query Alter…Rename To:
+```sql
+mysql> ALTER TABLE daftar_jurusan RENAME TO tabel_jurusan;
+Query OK, 0 rows affected (0.06 sec)
+ 
+mysql> DESC daftar_jurusan;
+ERROR 1146 (42S02): Table 'mahasiswa.daftar_jurusan' doesn't exist
+ 
+mysql> DESC tabel_jurusan;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| kode_jurusan     | char(5)      | YES  |     | NULL    |       |
+| nama_jurusan     | varchar(20)  | YES  |     | NULL    |       |
+| alamat_jurusan   | varchar(100) | YES  |     | NULL    |       |
+| jumlah_mahasiswa | mediumint(9) | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+```
+Dapat kita lihat bahwa setelah merubah nama tabel menjadi tabel_jurusan, tabel daftar_jurusan sudah tidak terdapat lagi di dalam database mahasiswa.
+
+Selain query ALTER…RENAME TO, terdapat juga perintah RENAME untuk merubah nama tabel,format querynya:
+
+`RENAME TABLE nama_tabel_lama TO nama_tabel_baru;`
+
+Mari kita rubah kembali nama tabel tabel_jurusan menjadi daftar_jurusan:
+```sql
+mysql> RENAME TABLE tabel_jurusan TO daftar_jurusan;
+Query OK, 0 rows affected (0.07 sec)
+ 
+mysql> DESC tabel_jurusan;
+ERROR 1146 (42S02): Table 'mahasiswa.tabel_jurusan' doesn't exist
+ 
+mysql> DESC daftar_jurusan;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| kode_jurusan     | char(5)      | YES  |     | NULL    |       |
+| nama_jurusan     | varchar(20)  | YES  |     | NULL    |       |
+| alamat_jurusan   | varchar(100) | YES  |     | NULL    |       |
+| jumlah_mahasiswa | mediumint(9) | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+```

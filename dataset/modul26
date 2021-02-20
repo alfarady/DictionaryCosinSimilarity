@@ -1,0 +1,26 @@
+**Cara Merubah Nama Kolom Tabel MySQL**
+
+Untuk merubah nama kolom pada tabel yang sudah ada, dapat menggunakan perintah ALTER…CHANGE, dengan format query sebagai berikut:
+
+`ALTER TABLE nama_tabel CHANGE nama_kolom nama_kolom_baru tipe_data;`
+
+Katakan kita ingin merubah nama kolom alamat menjadi alamat_jurusan agar menjadi lebih spesifik, dapat dilakukan dengan query berikut:
+
+Contoh query Alter…Change:
+
+```sql
+mysql> ALTER TABLE daftar_jurusan CHANGE alamat alamat_jurusan VARCHAR(100);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+ 
+mysql> DESC daftar_jurusan;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| kode_jurusan     | char(5)      | YES  |     | NULL    |       |
+| nama_jurusan     | varchar(20)  | YES  |     | NULL    |       |
+| alamat_jurusan   | varchar(100) | YES  |     | NULL    |       |
+| jumlah_mahasiswa | mediumint(9) | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+```

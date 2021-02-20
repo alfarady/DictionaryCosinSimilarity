@@ -1,0 +1,26 @@
+**Cara Menambahkan Kolom Baru pada Tabel MySQL**
+
+Andaikan beberapa saat kemudian kita berfikir untuk menambahkan kolom yang berisi nama ketua jurusan ke dalam tabel daftar_jurusan, kita dapat saja menghapus tabel dan membuat ulang, namun dengan menggunakan query ALTER…ADD, menambahkan kolom baru dapat dilakukan dengan lebih mudah.
+
+`ALTER TABLE nama_tabel ADD nama_kolom_baru tipe_data;`
+
+Contoh query menambahkan kolom ketua_jurusan ke dalam tabel daftar_jurusan adalah:
+
+Contoh query Alter…Add:
+```sql
+mysql> ALTER TABLE daftar_jurusan ADD ketua_jurusan VARCHAR(50);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+ 
+mysql> DESC daftar_jurusan;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| kode_jurusan     | char(5)      | YES  |     | NULL    |       |
+| nama_jurusan     | varchar(20)  | YES  |     | NULL    |       |
+| alamat_jurusan   | varchar(100) | YES  |     | NULL    |       |
+| jumlah_mahasiswa | mediumint(9) | YES  |     | NULL    |       |
+| ketua_jurusan    | varchar(50)  | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+```

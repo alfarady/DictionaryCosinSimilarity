@@ -1,0 +1,41 @@
+**Tipe data ENUM dalam MySQL**
+
+Tipe data ENUM merupakan tipe data yang khusus untuk kolom dimana nilai datanya sudah kita tentukan sebelumnya. Pilihan ini dapat berisi 1 sampai dengan 65,535 pilihan string. Dimana kolom yang didefinisikan sebagai ENUM hanya dapat memilih satu diantara pilihan string yang tersedia.
+
+Contoh penggunaan ENUM misalnya untuk kolom yang berisi daftar Jurusan yang harus dipilih mahasiswa. Pilihan ini harus sudah tersedia sebelumnya, dan kita dapat menggunakan tipe data enum untuk memastikan bahwa jurusan yang dipilih adalah jurusan yang telah ditentukan sebelumnya dan hanya 1 jurusan.
+
+Contoh query tipe data ENUM:
+```sql
+mysql> CREATE TABLE jurusan (jur ENUM('Ilmu Komputer','Ekonomi','MIPA','Kedokteran'));
+Query OK, 0 rows affected (0.07 sec)
+ 
+mysql> DESCRIBE jurusan;
++-------+-----------------------------------------------------+------+-----+---------+-------+
+| Field | Type                                                | Null | Key | Default | Extra |
++-------+-----------------------------------------------------+------+-----+---------+-------+
+| jur   | enum('Ilmu Komputer','Ekonomi','MIPA','Kedokteran') | YES  |     | NULL    |       |
++-------+-----------------------------------------------------+------+-----+---------+-------+
+1 row in set (0.01 sec)
+ 
+mysql> INSERT INTO jurusan VALUES ('Ilmu Komputer');
+Query OK, 1 row affected (0.04 sec)
+ 
+mysql> INSERT INTO jurusan VALUES ('Kedokteran');
+Query OK, 1 row affected (0.04 sec)
+ 
+mysql> INSERT INTO jurusan VALUES ('FISIP');
+ERROR 1265 (01000): Data truncated for column 'jur' at row 1
+ 
+mysql> INSERT INTO jurusan VALUES ('Ilmu Komunikasi');
+ERROR 1265 (01000): Data truncated for column 'jur' at row 1
+ 
+mysql> SELECT * FROM jurusan;
++---------------+
+| jur           |
++---------------+
+| Ilmu Komputer |
+| Kedokteran    |
++---------------+
+2 rows in set (0.00 sec)
+```
+Pada query diatas, kita mendefinisikan kolom jur pada tabel Jurusan dengan tipe ENUM yang dapat dipilih dari pilihan yang tersedia : Ilmu Komputer,Ekonomi,MIPA, dan Kedokteran. Ketika kita mencoba menginput data baru, seperti Fisip dan Ilmu Komunikasi, MySQL mengeluarkan error, karena pilihan ini memang tidak kita definisikan sebelumnya.

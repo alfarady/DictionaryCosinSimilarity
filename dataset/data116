@@ -1,0 +1,1 @@
+**BIGINT** merupakan tipe data yang memiliki ukuran 8 byte. Bilangan bulat terbesar dengan jangkauan untuk bilangan bertanda : -9223372036854775808 s/d 9223372036854775807 dan untuk yang tidak bertanda : 0 s/d 1844674473709551615.

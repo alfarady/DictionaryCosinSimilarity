@@ -1,0 +1,1 @@
+**Kebersamaan** (SHARABILITY). Agar data yang dikelola oleh sistem mendukung lingkungan multiuser (banyak pemakai) dengan menjaga / menghindari munculnya problem baru seperti inkonsistensi data (karena terjadi perubahan data yang dilakukan oleh beberapa user dalam waktu yang bersamaan) atau kondisi deadlock (karena ada banyak pemakai yang saling menunggu untuk menggunakan data).

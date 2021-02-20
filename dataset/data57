@@ -1,0 +1,1 @@
+**CURRENCY** merupakan tipe jenis number, tetapi pada awal angka selalu disertakan symbol currency default sesuai dengan regional setting yang digunakan, misalnya RP. $. Dapat menggunakan angka dengan 15 dgiit dibelakang desimal dan 4 digit sesudah decimal.

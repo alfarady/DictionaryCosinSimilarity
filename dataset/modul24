@@ -1,0 +1,42 @@
+**Cara Merubah Tabel MySQL (ALTER TABLE)**
+
+Ada kalanya setelah sebuah tabel MySQL dibuat, kita ingin mengubah struktur tabel tersebut. Entah itu berupa penambahan kolom baru, atau penghapusan sebuah kolom untuk digantikan dengan kolom lain.
+
+Query untuk membuat tabel (**CREATE TABLE**) dan menghapus tabel (**DROP TABLE**) sudah kita bahas pada Tutorial MySQL: Cara Membuat dan Menghapus Tabel MySQL. Kali ini kita akan menggunakan perintah **ALTER TABLE ** untuk mengubah struktur tabel MySQL.
+
+Agar memudahkan dalam mempelajari query ALTER TABLE, saya akan membuat sebuah tabel sample: daftar_jurusan. Silahkan buka **MySQL client**, dan gunakan perintah query berikut jika anda ingin membuat tabel yang sama:
+
+```sql
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mahasiswa          |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+5 rows in set (0.11 sec)
+ 
+mysql> USE mahasiswa;
+Database changed
+ 
+mysql> CREATE TABLE daftar_jurusan ( kode_jurusan CHAR(5), 
+nama_jurusan VARCHAR(20),alamat VARCHAR(100),
+jumlah_mahasiswa SMALLINT );
+Query OK, 0 rows affected (0.05 sec)
+ 
+mysql> DESC daftar_jurusan;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| kode_jurusan     | char(5)      | YES  |     | NULL    |       |
+| nama_jurusan     | varchar(20)  | YES  |     | NULL    |       |
+| alamat           | varchar(100) | YES  |     | NULL    |       |
+| jumlah_mahasiswa | smallint(6)  | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+```
+
+Query tersebut berisi perintah pembuatan tabel daftar_jurusan pada database mahasiswa.

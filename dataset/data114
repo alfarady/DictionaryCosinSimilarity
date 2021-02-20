@@ -1,0 +1,1 @@
+**LONG INT** merupakan tipe data yang memiliki ukuran 4 byte. Bilangan bulat dengan jangkauan untuk bilangan bertanda : -2,147,483,648 s/d 2,147,483,647 dan untuk yang tidak bertanda : 0 s/d 4,294,967,295.

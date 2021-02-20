@@ -1,0 +1,1 @@
+**SINGLE** merupakan tipe data yang terdiri dari angka -3,402823E38 s/d -1.40129E-45 untuk bilangan negative dan dari 1.40129E-45 s/d 3.402823E38 untuk bilangan positif dan bilangan nol. Memiliki 7 jumlah decimal dengan ukuran 4 bytes.

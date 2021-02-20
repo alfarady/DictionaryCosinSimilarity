@@ -1,0 +1,67 @@
+**Cara Membuat Tabel MySQL**
+Langkah pertama sebelum membuat tabel adalah membuat dan memilih database yang akan digunakan. Seperti pada Tutorial MySQL : Membuat dan Menghapus Database, kita akan melanjutkan menggunakan database mahasiswa. Jika anda belum membuat dan memilih database mahasiswa, silahkan ketik query berikut:
+```sql
+mysql> CREATE DATABASE mahasiswa;
+Query OK, 1 row affected (0.00 sec)
+ 
+mysql> USE mahasiswa;
+Database changed
+```
+Format dasar query untuk membuat tabel adalah:
+
+`CREATE TABLE [IF NOT EXISTS] nama_tabel (daftar_kolom) [type=tipe_tabel]`
+
+- Query opsional  [IF NOT EXISTS] sama seperti pada query pembuatan database, digunakan untuk membuat MySQL tidak menampilkan pesan error jika tabel tersebut telah ada sebelumnya dalam database.
+- Nama_tabel adalah nama dari tabel yang ingin kita buat.
+- Daftar_kolom berisi definisi dari kolom-kolom yang akan kita buat untuk database ini. Lebih lanjut tentang jenis-jenis kolom akan kita bahas dalam tutorial selanjutnya.
+- Tipe_tabel adalah query opsional dimana kita dapat mendefinisikan tipe tabel untuk tabel yang akan kita gunakan, seperti MyISAM maupun InnoDB. Lebih lanjut tentang tipe tabel akan kita bahas pada tutorial berikutnya.
+Sebagai contoh, kita akan membuat tabel berdasarkan data mahasiswa berikut ini :
+
+| NIM | Nama  | Umur  | Tempat Lahir  | Jurusan   |
+|   ------------ | ------------ | ------------ | ------------ |
+|  120502045 |  Vita Pitaloka |19   |Padang   |  Ilmu Komunikasi |
+| 110901033  |  Raden Patah |20   |Solo   |  Teknik Pangan |
+| 100301021  |  Riko Fernado |  19 | Jakarta  | Teknologi Informasi   |
+| 121401074  | Ridwan Syakh  | 19  |  Bebres |  Ilmu Hukum |
+| 110501023  | Jermain Dia  | 21  | Banjarnegara  |  Ilmu Sosial |
+| 101401030  | Mawar Enh  | 20  | Tangerang  |  Matematika |
+
+Dari tabel tersebut kita dapat simpulkan bahwa tabel akan terdiri dari 5 buah kolom:
+
+- Kolom NIM (Nomor Induk Mahasiswa), walaupun isi tabel ini berupa angka, namun angka disini bukan dimaksudkan untuk operasi matematis, sehingga kita akan lebih cocok jika jika menganggapnya kumpulan karakter atau huruf, maka kita akan membuatnya dengan tipe tabel string. Dalam MySQL tipe string didefinisikan sebagai char.
+- Kolom Nama berisi karakter huruf, maka akan kita buat dengan tipe data string.
+- Kolom Umur akan berisi angka-angka, dan mungkin saja kita akan menggunakan umur untuk keperluan matematis, maka tipe data yang akan kita gunakan adalah integer.
+- Kolom Tempat Lahir berisi kumpulan karakter huruf, maka akan kita buat dengan tipe data string.
+- Kolom Jurusan berisi kumpulan karakter huruf, maka akan kita buat dengan tipe data string.
+
+Sehingga query untuk membuat tabel data_mahasiswa seperti diatas adalah:
+```sql
+mysql> CREATE TABLE data_mahasiswa ( nim char(9), nama char(50), 
+umur int, tempat_lahir char(50), jurusan char (30) );
+ 
+Query OK, 0 rows affected (0.08 sec)
+```
+Penjelasan query:
+- Dengan query diatas, kita telah membuat sebuah tabel dengan nama data_mahasiswa, terdiri dari 5 kolom: nim, nama, umur, tempat_lahir, dan jurusan.
+- Setelah nama kolom, kita definisikan jenis dari kolom tersebut.
+- Untuk kolom yang berisi huruf (string), dalam MySQL dapat kita definisikan sebagai char. Angka di dalam kurung adalah jumlah karakter maksimal yang dapat ditampung, misalnya untuk kolom nama, kita menginstruksikan MySQL untuk menyediakan maksimal sebanyak 50 karakter untuk kolom nama.
+- Untuk kolom yang berisi angka, MySQL menyediakan beberapa tipe yang dapat dipilih, untuk contoh diatas, kita memilih integer, disingkat menjadi int.
+- Untuk setiap kolom, dalam query CREATE TABEL, dipisahkan dengan tanda koma, dan seluruh definisi kolom harus berada diantara tanda kurung.
+ 
+**Cara Melihat Daftar Tabel dalam MySQL**
+Untuk melihat seluruh tabel yang ada pada database aktif saat ini, format querynya adalah:
+
+`SHOW TABLES;`
+
+Untuk contoh kita, karena baru ada 1 buah tabel, maka hasil eksekusi querynya adalah sebagai berikut:
+```sql
+mysql> SHOW TABLES;
+ 
++---------------------+
+| Tables_in_mahasiswa |
++---------------------+
+| data_mahasiswa      |
++---------------------+
+1 row in set (0.07 sec)
+```
+ 

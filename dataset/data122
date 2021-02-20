@@ -1,0 +1,1 @@
+**DECIMAL** Terdiri dari angka -10^38-1 s/d 10^38-1 ( untuk SQL Server Database) dan -10^28-1 s/d 10^28-1 ( untuk Ms Access Database). JUmlah decimal 18 dan mempunyai ukutan 12 byte.

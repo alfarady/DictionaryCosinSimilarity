@@ -1,0 +1,41 @@
+**Tipe Data TEXT MySQL**
+
+Untuk data string yang lebih besar, MySQL menyediakan tipe data TEXT, yang terdiri dari : TINYTEXT, TEXT, MEDIUMTEXT, dan LONGTEXT. Maksimal ukuran masing-masing tipe data dapat dilihat dari tabel dibawah ini:
+
+| Tipe Data  | Ukuran Maksimum  | Jumlah Karakter Maksimum  |
+| ------------ | ------------ | ------------ |
+| TINYTEXT  |  255 byte | 255  |
+| TEXT  | 	65.535 byte (64 KB)  | 	6.5535  |
+| MEDIUMTEXT  |  	16.777.215 byte (16MB) | 16.777.215  |
+|  LONGTEXT | 4.294.967.295 (4GB)  | 4.294.967.295  |
+
+Setiap tipe data text disimpan berdasarkan berapa data yang diinput, sama seperti VARCHAR, dimana jika kita mendefinisikan suatu kolom sebagai LONGTEXT, dan hanya berisi 100 karakter, ukuran penyimpanan yang digunakan sekitar 100 byte, bukan 4GB.
+
+Contoh query membuat tabel dengan tipe data TEXT :
+```sql
+mysql> CREATE TABLE contoh_text (tin TINYTEXT, tex TEXT, 
+lon LONGTEXT);
+Query OK, 0 rows affected (0.05 sec)
+ 
+mysql> DESC contoh_text;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| tin   | tinytext | YES  |     | NULL    |       |
+| tex   | text     | YES  |     | NULL    |       |
+| lon   | longtext | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+3 rows in set (0.09 sec)
+ 
+mysql> INSERT INTO contoh_text values ('duniailkom',
+'duniailkom','duniailkom.com');
+Query OK, 1 row affected (0.04 sec)
+ 
+mysql> SELECT * FROM contoh_text;
++------------+------------+----------------+
+| tin        | tex        | lon            |
++------------+------------+----------------+
+| duniailkom | duniailkom | duniailkom.com |
++------------+------------+----------------+
+1 row in set (0.00 sec)
+```

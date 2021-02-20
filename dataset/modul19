@@ -1,0 +1,44 @@
+**Tipe Data BLOB MySQL**
+
+Tipe data BLOB adalah tipe data versi binary dari TEXT, dimana karakter akan disimpan dalam bit. Dan untuk karakter huruf, huruf besar dan kecil akan dibedakan (‘A’ tidak sama dengan ‘a’). Sama seperty TEXT, BLOB juga memiliki beberapa tipe : TINY BLOB, BLOB, MEDIUM BLOB, dan LONGBLOB.
+
+Ukuran serta jangkauan dari BLOG sama seperti TEXT, seperti pada tabel berikut ini:
+
+| Tipe Data  | Ukuran Maksimum  | Jumlah Karakter Maksimum  |
+| ------------ | ------------ | ------------ |
+| TINYBLOB  | 255 byte  | 255  |
+| BLOB  |  65.535 byte (64 KB) | 	65.535  |
+| MEDIUMBLOB  | 16.777.215 byte (16MB)  |   | 16.777.215
+| LONGBLOB  | 	4.294.967.295 (4GB)  | 	4.294.967.295  |
+
+
+Karena sifatnya yang tersimpan secara binary,tipe data BLOB dapat digunakan untuk menyimpan data multimedia, seperti gambar dan musik kedalam tabel MySQL.
+```sql
+mysql> CREATE TABLE contoh_blob (tin TINYBLOB, blo BLOB, 
+lon LONGBLOB);
+Query OK, 0 rows affected (0.14 sec)
+ 
+mysql> DESCRIBE contoh_blob;
+ +-------+----------+------+-----+---------+-------+
+ | Field | Type     | Null | Key | Default | Extra |
+ +-------+----------+------+-----+---------+-------+
+ | tin   | tinyblob | YES  |     | NULL    |       |
+ | blo   | blob     | YES  |     | NULL    |       |
+ | lon   | longblob | YES  |     | NULL    |       |
+ +-------+----------+------+-----+---------+-------+
+ 3 rows in set (0.01 sec)
+ 
+mysql> INSERT INTO contoh_blob values ('duniailkom',
+'duniailkom','duniailkom.com');
+Query OK, 1 row affected (0.05 sec)
+ 
+mysql> SELECT * FROM contoh_blob;
+ +------------+------------+----------------+
+ | tin        | blo        | lon            |
+ +------------+------------+----------------+
+ | duniailkom | duniailkom | duniailkom.com |
+ +------------+------------+----------------+
+ 1 row in set (0.01 sec)
+```
+
+Dalam tutorial MySQL kali ini kita telah membahas tentang tipe data String dalam MySQL. Tipe data string mungkin adalah tipe data yang paling sering digunakan di dalam pembuatan tabel.

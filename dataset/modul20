@@ -1,0 +1,85 @@
+**Tipe data DATE dalam MySQL**
+
+MySQL memiliki beberapa format untuk tipe data date. Format tipe data date tersebut adalah: DATE, TIME, DATETIME, TIMESTAMP, dan YEAR. Perbedaan dari tipe-tipe tersebut terletak pada format penyimpanan data. Untuk lebih lengkapnya dapat dilihat dari tabel dibawah ini:
+
+|Tipe Data|Jangkauan|Ukuran|Zero Value|
+|------------ |------------ |------------ |------------ |
+|DATE|‘1000-01-01’ to ‘9999-12-31’|3 byte|‘0000-00-00’|
+|DATETIME|‘1000-’01-01 00:00:01’ to ‘9999-12-31 23:59:59’|8 byte|‘0000-00-00 00:00:00’|
+|TIMESTAMP|‘1970-01-01 00:00:00’ to ‘2038-01-18 22:14:07’|4 byte|‘0000-00-00 00:00:00’|
+|TIME|‘–838:59:59’ to ‘838:59:58’|3 byte|‘00:00:00’|
+|YEAR(2)|00 to 99|1 byte|‘00’|
+|YEAR(4)|1901 to 2155|1 byte|‘0000’|
+
+MySQL menyediakan beberapa format yang dapat digunakan untuk input tipe data tanggal, masing masing untuk tipe data yang bersesuaian.
+
+|Tipe Data|Fomat Input|
+|------------ |------------ |
+|DATETIME|'CCYY-MM-DD hh:mm:ss'|
+|TIMESTAMP|'YY-MM-DD hh:mm:ss'|
+||'CCYYMMDDhhmmss'|
+||'YYMMDDhhmmss'|
+||CCYYMMDDhhmmss|
+||YYMMDDhhmmss|
+|DATE|'CCYY-MM-DD'|
+||'YY-MM-DD'|
+||'CCYYMMDD'|
+||'YYMMDD'|
+||CCYYMMDD|
+||YYMMDD|
+|TIME|'hh:mm:ss'|
+||'hhmmss'|
+||hhmmss|
+|YEAR|'CCYY'|
+||'YY'|
+||CCYY|
+||YY|
+
+- CCYY : input untuk tahun, dimana YY berupa tahun 2 digit, seperti 98, 78, dan 00, sedangkan untuk CCYY adalah tahun dengan 4 digit, seperti 2001, 1987, 2012. Untuk tahun dengan 2 digit, MySQL mengkonversinya dengan aturan 70-99 menjadi 1970-1999 dan 00-69 menjadi 2000-2069.
+- MM: bulan dalam format dua digit, seperti 05,07,dan 12.
+- DD: tanggal dalam format dua digit, seperti 14, 06 dan 30.
+- hh: jam dalam format 2 digit, seperti 06,09, dan 12.
+- mm: menit, dalam format 2 digit, seperti 15, 45, dan 59.
+- ss: detik, dalam format 2 digit, seperti 10, 40, dan 57.
+
+Jika MySQL tidak dapat membaca format, atau data tidak tersedia, maka data akan diisi sesuai dengan nilai pada Zero Value.
+
+
+Contoh query untuk membuat tabel dengan data DATE:
+```sql
+mysql> CREATE TABLE contoh_date (dat DATE, tim TIME, dattim DATETIME, 
+timestam TIMESTAMP, yea YEAR);
+Query OK, 0 rows affected (0.06 sec)
+ 
+mysql> DESCRIBE contoh_date;
++----------+-----------+------+-----+-------------------+-----------------------------+
+| Field    | Type      | Null | Key | Default           | Extra                       |
++----------+-----------+------+-----+-------------------+-----------------------------+
+| dat      | date      | YES  |     | NULL              |                             |
+| tim      | time      | YES  |     | NULL              |                             |
+| dattim   | datetime  | YES  |     | NULL              |                             |
+| timestam | timestamp | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| yea      | year(4)   | YES  |     | NULL              |                             |
++----------+-----------+------+-----+-------------------+-----------------------------+
+5 rows in set (0.01 sec)
+```
+
+Perhatikan pada saat mendefinisikan tipe data YEAR, pada query DESCRIBE kita dapat melihat bahwa MySQL memberikan nilai YEAR(4) sebagai nilai default. Kita dapat secara langsung mendefinisikan YEAR(2) jika menginginkan data tahun dengan 2 digit, namun hal ini tidak disarankan, karena dengan mendefinisikan tahun 26, akan menjadi ambigu, apakah itu tahun 1926 atau 2026, walaupun MySQL memiliki aturan akan mengkonversinya menjadi 2026.
+
+MySQL menyediakan fungsi NOW() untuk memberikan tanggal server pada saat ini, dan kita akan menggunakannya sebagai nilai tiap kolom pada tabel contoh_date:
+```sql
+mysql> INSERT INTO contoh_date values (NOW(),NOW(),NOW(),NOW(),'2012');
+Query OK, 1 row affected, 1 warning (0.05 sec)
+ 
+mysql> SELECT * FROM contoh_date;
++------------+----------+---------------------+---------------------+------+
+| dat        | tim      | dattim              | timestam            | yea  |
++------------+----------+---------------------+---------------------+------+
+| 2012-10-20 | 19:40:45 | 2012-10-20 19:40:45 | 2012-10-20 19:40:45 | 2012 |
++------------+----------+---------------------+---------------------+------+
+1 row in set (0.00 sec)
+```
+
+Khusus untuk tipe data YEAR, fungsi NOW() akan menghasilkan error, oleh karenanya, pada contoh diatas saya menginput manual ‘2012’ untuk kolom YEAR.
+
+Tipe data date dalam MySQL bukanlah tipe data dasar, akan tetapi penggunaannya sangat umum dan sering sehingga MySQL menyediakan tipe data tanggal secara bawaan. Dalam tutorial belajar MySQL selanjutnya, kita akan membahas tentang tipe data bentukan MySQL: enum dan set, serta perbedaan keduanya.

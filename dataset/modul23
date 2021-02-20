@@ -1,0 +1,74 @@
+**Atribut tipe data MySQL**
+Atribut tipe data adalah aturan yang kita terapkan untuk sebuah kolom. MySQL memiliki banyak atribut tipe data, namun dalam tutorial ini kita hanya membahas atribut tipe data yang paling umum digunakan, yakni: AUTO_INCREMENT, BINARY, DEFAULT, NOT NULL, NULL, SIGNED, UNSIGNED, dan ZEROFILL.
+
+- Atribut AUTO_INCREMENT
+Atribut AUTO_INCREMENT digunakan untuk tipe data numerik (biasanya tipe data INT), dimana jika kita menetapkan sebuah kolom dengan atribut AUTO_INCREMENT, maka setiap kali kita menginputkan data, nilai pada kolom ini akan bertambah 1. Nilai pada kolom tersebut juga akan bertambah jika kita input dengan NULL  atau nilai 0.
+Pada sebuah tabel, hanya 1 kolom yang dapat dikenai atribut AUTO_INCREMENT. Setiap kolom AUTO_INCREMENT juga akan dikenakan atribut NOT NULL secara otomatis. Kolom AUTO_INCREMENT juga harus digunakan sebagai KEY (biasanya PRIMARY KEY)
+
+- Atribut BINARY
+Atribut BINARY digunakan untuk tipe data huruf, seperti CHAR dan VARCHAR. Tipe data CHAR, VARCHAR dan TEXT tidak membedakan antara huruf besar dan kecil (case-insensitive), namun jika diberikan atribut BINARY, maka kolom tersebut akan membedakan antara huruf besar dan kecil (case-sensitive)
+
+- Atribut DEFAULT
+Atribut DEFAULT dapat digunakan pada hampir semua tipe data. Fungsinya untuk menyediakan nilai bawaan untuk kolom seandainya tidak ada data yang diinput kepada kolom tersebut.
+
+- Atribut NOT NULL
+Atribut NOT NULL dapat digunakan pada hampir semua tipe data, Fungsinya untuk memastikan bahwa nilai pada kolom tersebut tidak boleh kosong. Jika kita menginput data, namun tidak memberikan nilai untuk kolom tersebut, akan menghasilkan error pada MySQL.
+
+- Atribut NULL
+Atribut NULL berkebalikan dengan NOT NULL, dimana jika sebuah kolom didefinisikan dengan NULL, maka kolom tersebut tidak harus berisi nilai.
+
+- Atribut SIGNED
+Atribut SIGNED digunakan untuk tipe data numerik. Berlawanan dengan atribut UNSIGNED, dimana atribut ini berfungsi agar kolom dapat menampung nilai negatif. Atribut SIGNED biasanya dicantumkan hanya untuk menegaskan bahwa kolom tersebut mendukung nilai negatif, karena MySQL sendiri telah menyediakan nilai negatif secara default untuk seluruh tipe numerik.
+
+- Atribut UNSIGNED
+Atribut UNSIGNED digunakan untuk tipe data numerik, namun berbeda sifatnya untuk tipe data INT,DECIMAL dan FLOAT. Untuk tipe data INT, atribut UNSIGNED berfungsi mengorbankan nilai negatif, untuk mendapatkan jangkauan nilai positif yang lebih tinggi. Namun untuk tipe data DECIMAL dan FLOAT, atribut UNSIGNED hanya akan menhilangkan nilai negatif, tanpa menambah jangkauan data.
+
+- Atribut ZEROFILL
+Atribut ZEROFILL digunakan untuk tipe data numerik, dimana berfungsi untuk tampilan format data yang akan mengisi nilai 0 di sebelah kanan dari data. Jika kita menggunakan atribut ZEROFILL untuk suatu kolom, secara otomatis kolom tersebut juga dikenakan attribut UNSIGNED.
+
+Contoh query untuk penggunaan attribut :
+```sql
+mysql> CREATE TABLE contoh_att (no int AUTO_INCREMENT, 
+nama VARCHAR(30) NOT NULL,umur TINYINT UNSIGNED DEFAULT '10', 
+kodepos CHAR(5) NULL,PRIMARY KEY(no));
+Query OK, 0 rows affected (0.13 sec)
+ 
+mysql> DESCRIBE contoh_att;
++---------+---------------------+------+-----+---------+----------------+
+| Field   | Type                | Null | Key | Default | Extra          |
++---------+---------------------+------+-----+---------+----------------+
+| no      | int(11)             | NO   | PRI | NULL    | auto_increment |
+| nama    | varchar(30)         | NO   |     | NULL    |                |
+| umur    | tinyint(3) unsigned | YES  |     | 10      |                |
+| kodepos | char(5)             | YES  |     | NULL    |                |
++---------+---------------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+ 
+mysql> INSERT INTO contoh_att VALUES (NULL,'Joko',NULL,20155);
+Query OK, 1 row affected (0.00 sec)
+ 
+mysql> INSERT INTO contoh_att VALUES (0,'Amir',23,27118);
+Query OK, 1 row affected (0.05 sec)
+ 
+mysql> INSERT INTO contoh_att VALUES (6,'Thasya',24,30012);
+Query OK, 1 row affected (0.04 sec)
+ 
+mysql> INSERT INTO contoh_att VALUES (9,NULL,32,10099);
+ERROR 1048 (23000): Column 'nama' cannot be null
+ 
+mysql> INSERT INTO contoh_att VALUES (NULL,'Rina',21,10889);
+Query OK, 1 row affected (0.05 sec)
+ 
+mysql> SELECT * FROM contoh_att;
++----+--------+------+---------+
+| no | nama   | umur | kodepos |
++----+--------+------+---------+
+|  1 | Joko   | NULL | 20155   |
+|  2 | Amir   |   23 | 27118   |
+|  6 | Thasya |   24 | 30012   |
+|  7 | Rina   |   21 | 10889   |
++----+--------+------+---------+
+4 rows in set (0.00 sec)
+```
+
+Dapat kita lihat bahwa jika kita memberikan nilai NULL kepada kolom nama yang telah diberikan atribut NOT NULL, MySQL akan memberikan error. Juga pada kolom no, dimana kita lompat dengan memberikan nilai 6, namun untuk kolom selanjutnya, akan tetap ditambah sebanyak 1, karena dikenai atribut AUTO_INCREMENT.

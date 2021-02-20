@@ -1,0 +1,43 @@
+**Tipe data SET dalam MySQL**
+Berbeda dengan tipe data ENUM dimana pilihan yang tersedia untuk kolom hanya dapat 1 data, untuk kolom SET kita dapat memilih satu atau lebih nilai yang tersedia dari 1 sampai 64 pilihan string yang tersedia.
+
+Contoh penggunaan tipe data SET adalah untuk data tentang hobby seseorang, karena bisa aja seseorang memiliki hobi yang lebih dari 1, namun kita ingin memilih dari kumpulan list yang telah kita buat sebelumnya.
+
+Contoh query tipe data SET:
+```sql
+mysql> CREATE TABLE hobi (hob SET('Membaca','Menulis','Menggambar','Main Musik'));
+Query OK, 0 rows affected (0.05 sec)
+ 
+mysql> DESCRIBE hobi;
++-------+----------------------------------------------------+------+-----+---------+-------+
+| Field | Type                                               | Null | Key | Default | Extra |
++-------+----------------------------------------------------+------+-----+---------+-------+
+| hob   | set('Membaca','Menulis','Menggambar','Main Musik') | YES  |     | NULL    |       |
++-------+----------------------------------------------------+------+-----+---------+-------+
+1 row in set (0.01 sec)
+ 
+mysql> INSERT INTO hobi VALUES ('Membaca');
+Query OK, 1 row affected (0.05 sec)
+ 
+mysql> INSERT INTO hobi VALUES ('Membaca,Main Musik');
+Query OK, 1 row affected (0.07 sec)
+ 
+mysql> INSERT INTO hobi VALUES ('Menggambar,Main Musik');
+Query OK, 1 row affected (0.04 sec)
+ 
+mysql> INSERT INTO hobi VALUES ('Belajar,Main Musik');
+ERROR 1265 (01000): Data truncated for column 'hob' at row 1
+ 
+mysql> SELECT * FROM hobi;
++-----------------------+
+| hob                   |
++-----------------------+
+| Membaca               |
+| Membaca,Main Musik    |
+| Menggambar,Main Musik |
++-----------------------+
+3 rows in set (0.00 sec)
+```
+Dari query diatas, dapat kita lihat bahwa untuk menginput lebih dari 1 nilai, kita memisahkan dengan tanda koma dan tetap dalam tanda kutip, juga seandainya kita coba input hobi ‘belajar’, yang memang tidak ada sebelumnya, maka MySQL akan mengeluarkan pesan error.
+
+Tipe data enum dan set adalah tipe data khusus dalam MySQL dan digunakan untuk menyeleksi input ke database agar sesuai dengan data yang tersedia. Dalam tutorial Belajar MySQL selanjutnya kita akan membahas tentang atribut tipe data yang digunakan untuk memberi sifat dan fitur tambahan kedalam sebuah kolom di dalam MySQL.

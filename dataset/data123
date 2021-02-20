@@ -1,0 +1,1 @@
+**NUMERIC** (M,D) Ukuran M byte. Sinonim dari DECIMAL, misalnya NUMERIC(5,2) dapat digunakan untuk menyimpan bilangan -99,99 s/d 99,99.

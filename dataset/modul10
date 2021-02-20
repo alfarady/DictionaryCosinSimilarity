@@ -1,0 +1,22 @@
+**Cara Melihat Struktur Tabel MySQL**
+Untuk melihat struktur dari sebuah tabel, seperti nama kolom yang tersedia, dan tipenya, dapat dilihat dengan format query:
+
+`DESCRIBE nama_tabel;`
+
+Dalam contoh kita, hasil dari DESCRIBE data_mahasiswa, adalah:
+```sql
+mysql> DESCRIBE data_mahasiswa;
+ 
++--------------+----------+------+-----+---------+-------+
+| Field        | Type     | Null | Key | Default | Extra |
++--------------+----------+------+-----+---------+-------+
+| nim          | char(9)  | YES  |     | NULL    |       |
+| nama         | char(50) | YES  |     | NULL    |       |
+| umur         | int(11)  | YES  |     | NULL    |       |
+| tempat_lahir | char(50) | YES  |     | NULL    |       |
+| jurusan      | char(30) | YES  |     | NULL    |       |
++--------------+----------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+```
+
+Dari hasil query, dapat terlihat semua kolom serta tipe dari setiap kolom tersebut. Untuk keterangan kolom seperti Null, Key, Default, dan Extra akan kita bahas dalam tutorial berikutnya.

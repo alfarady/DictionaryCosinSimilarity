@@ -1,0 +1,1 @@
+**TIMESTAMP** merupakan tipe data tanggal yang memiliki 4 byte. Kombinasi tanggal dan jam, dengan jangkauan dari ‘1970-01-01 00:00:00’ s/d ‘2037’.

@@ -1,0 +1,38 @@
+**Aturan Penulisan huruf BESAR dan kecil dalam MySQL**
+Konsep penggunaan huruf besar dan huruf kecil dalam MySQL akan berbeda tergantung saat penggunaannya.
+
+MySQL tidak membedakan penulisan huruf besar maupun kecil (case insensitive) dalam penulisan fungsi dan identifier. Sebagai contoh, ketiga query ini akan menghasilkan output yang sama (kecuali header dari tabel):
+```sql
+mysql> SELECT Version();
+ 
++------------+
+| Version()  |
++------------+
+| 5.6.21-log |
++------------+
+1 row in set (0.00 sec)
+ 
+mysql> SELECT VERSION();
+ 
++------------+
+| VERSION()  |
++------------+
+| 5.6.21-log |
++------------+
+1 row in set (0.00 sec)
+ 
+mysql> select version();
+ 
++------------+
+| version()  |
++------------+
+| 5.6.21-log |
++------------+
+1 row in set (0.00 sec)
+```
+
+Namun untuk penulisan nama database dan nama tabel, MySQL akan mengikuti sistem operasi dimana MySQL Server berjalan.
+
+Untuk Sistem Operasi Windows, nama database mahasiswa dianggap sama dengan MaHaSIsWA, namun dalam MySQL Server yang berjalan pada Linux, kedua database tersebut dianggap berbeda (case sensitive).
+
+Karena hal ini, ada baiknya kita membiasakan menggunakan kesepakatan dalam penamaan. Disarankan untuk menggunakan selalu huruf kecil dalam penulisan database, tabel dan variabel dalam MySQL, sehingga perbedaan huruf tidak akan menjadi masalah pada kemudian hari jika MySQL Server pindah sistem operasi.
