@@ -1,4 +1,4 @@
-# Hoax Detection
+# Dictionary Cosin Similarity: Basis Data
 
 Step to install
 
