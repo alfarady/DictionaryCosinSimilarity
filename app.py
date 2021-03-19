@@ -1,5 +1,5 @@
 from logging import log
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, jsonify, render_template
 from flask_assets import Environment, Bundle
 from core.CosinMeasure import CosineMeasure
 app = Flask(__name__, template_folder='./views')
@@ -9,7 +9,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/<query>')
-def home(query):
+def predict(query):
     data = measure.make_prediction(query)
     prediction = {"status": 200, "data": data, "totalData": measure.nos_of_documents}
     return jsonify(prediction)

@@ -3,6 +3,7 @@ import os
 from math import log, sqrt
 from collections import defaultdict
 
+nltk.download('punkt')
 DIR_DATASET = '/dataset'
 
 class CosineMeasure():
