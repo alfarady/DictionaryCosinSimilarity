@@ -1,4 +1,7 @@
-from app import app
+from app import app, measure
+from core.CosinMeasure import CosineMeasure
 
 if __name__ == "__main__":
-    app.main()
+    measure = CosineMeasure()
+    measure.prepare_dataset()
+    app.run()
