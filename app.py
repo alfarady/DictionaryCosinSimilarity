@@ -1,23 +1,26 @@
 from logging import log
 from flask import Flask, jsonify, render_template
 from flask_assets import Environment, Bundle
-from core.CosinMeasure import CosineMeasure
+from numpy.testing._private.utils import measure
+from core.SemanticMeasure import SemanticMeasure
 app = Flask(__name__, template_folder='./views')
-measure = CosineMeasure()
+measure = SemanticMeasure(verbose=True)
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/<query>')
+@app.route('/search/<query>', methods=['POST'])
 def predict(query):
-    data = measure.make_prediction(query)
-    prediction = {"status": 200, "data": data, "totalData": measure.nos_of_documents}
+    if(query == 'favicon.ico'):
+        return jsonify({})
+
+    data = measure.similarity_query(query)
+    prediction = {"status": 200, "data": data, "totalData": len(measure.documents)}
     return jsonify(prediction)
 
 def main():
-    measure.prepare_dataset()
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host="0.0.0.0")
 
 if __name__ == '__main__':
     main()

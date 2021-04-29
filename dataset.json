@@ -1,0 +1,144 @@
+{
+  "data": [
+    [
+      "basis data, pengertian, kumpulan data",
+      "**BASIS DATA** adalah kumpulan data yang saling berhubungan yang disimpan secara bersama sedemikian rupa dan tanpa pengulangan (redundancy) yang tidak perlu, untuk memenuhi berbagai kebutuhan Entitas adalah obyek yang mewakili sesuatu dalam dunia nyata dan dapat dibedakan antara satu dengan lainnya (unique)."
+    ],
+    [
+      "basis data, pengertian, abstraksi data, konsep, dasar",
+      "**ABSTRAKSI DATA** adalah merupakan tingkatan atau level bagaimana melihat data dalam sistem basis data, sejumlah konsep yang digunakan untuk membuat diskripsi struktur basis data, diwujudkan dalam pemodelan data, melalui diskripsi tersebutdapat ditentukan jenis data dan hubungannya deangan data lain "
+    ],
+    [
+      "tipe, jenis, bentuk, ragam, data, kategori, kelas, macam, kelompok, klasifikasi",
+      "**TIPE DATA** adalah suatu bentuk pemodelan data yang dideklarasikan pada saat melakukan pembuatan tabel. Tipe data ini akan mempengaruhi setiap data yang akan dimasukkan ke dalam sebuah tabel. Data yang akan dimasukkan harus sesuai dengan tipe data yang dideklarasikan."
+    ],
+    [
+      "numerik, angka, nomor, desimal, bulat, mata uang",
+      "**TIPE DATA NUMERIK** merupakan tipe data yang memiliki dua macam kelompok, yaitu integer dan floating point. Integer digunakan untuk data bilangan bulat sedangkan floating point digunakan untuk bilangan desimal."
+    ],
+    [
+      "string, karakter, huruf, teks, text",
+      "**TIPE DATA STRING** adalah tipe data yang bisa kita gunakan untuk menampung banyak karakter dengan jumlah maksimum data yang dapat ditampung yakni sebanyak 255 karakter. "
+    ],
+    [
+      "tanggal, date",
+      "**TIPE DATA TANGGAL** tersedia tipe-tipe data field berupa DATETIME, DATE, TIMESTAMP, TIME dan YEAR."
+    ],
+    [
+      "blob, musik, video",
+      "**TIPE DATA BLOB** merupakan tipe data yang dapat digunakan untuk menampung gambar, musik, video dan lain-lain nya."
+    ],
+    [
+      "null, kosong, tidak ada nilai",
+      "NULL. NULL sebenarnya bukan data, tapi dia mewakili sesuatu yang “tidak pasti”, “tidak diketahui” atau “belum ada nilainya”. Sebagai contoh dalam kehidupan sehari-hari Anda melakukan suatu survei berapa jumlah pengguna sistem operasi LINUX dan Windows di Indonesia. Selama survei belum tuntas maka data pastinya belum dapat diketahui. Oleh sebab itu, data tersebut bisa diwakili dengan NULL, alias belum diketahui."
+    ],
+    [
+      "tinyint, bilangan bulat,integer, numerik, positif, negatif",
+      "**TINYINT** merupakan tipe data yang memiliki ukuran 1 byte. Bilangan bulat terkecil, dengan jangkauan untuk bilangan bertanda: -128 sampai dengan 127 dan untuk yang tidak bertanda : 0 s/d 255. Bilangan tak bertandai dengan kata UNSIGNED."
+    ],
+    [
+      "smallint, bilangan bulat, integer, numerik, positif, negatif",
+      "**SMALLINT** merupakan tipe data yang memiliki ukuran 2 Byte. Bilangan bulat dengan jangkauan untuk bilangan bertanda : -32768 s/d 32767 dan untuk yang tidak bertanda : 0 s/d 65535."
+    ],
+    [
+      "mediumint, bilangan bulat, integer, numerik, positif, negatif",
+      "**MEDIUMINT** merupakan tipe data yang memiliki ukuran 3 byte. Bilangan bulat dengan jangkauan untuk bilangan bertanda : -8388608 s/ d 8388607 dan untuk yang tidak bertanda : 0 s/d 16777215."
+    ],
+    [
+      "long int, bilangan bulat, integer, numerik, positif, negatif",
+      "**LONG INT** merupakan tipe data yang memiliki ukuran 4 byte. Bilangan bulat dengan jangkauan untuk bilangan bertanda : -2,147,483,648 s/d 2,147,483,647 dan untuk yang tidak bertanda : 0 s/d 4,294,967,295."
+    ],
+    [
+      "integer, bilangan bulat, numerik, positif, negatif",
+      "**INTEGER** merupakan tipe data yang terdiri dari angka -32,768 s/f 32,767 ( tidak ada pecahan atau desimal) dan mempunyai ukuran 2byte."
+    ],
+    [
+      "big int, bilangan bulat, integer, numerik, positif, negatif",
+      "**BIGINT** merupakan tipe data yang memiliki ukuran 8 byte. Bilangan bulat terbesar dengan jangkauan untuk bilangan bertanda : -9223372036854775808 s/d 9223372036854775807 dan untuk yang tidak bertanda : 0 s/d 1844674473709551615."
+    ],
+    [
+      "binary, string, heksadesimal",
+      "**BINARY** merupakan tipe data BINARY yang dapat menerima data BINARY dengan maksimum 8000 bytes data. Tipe data ini diinterpretasikan sebagai string dari bit. dan berfungsi untuk menyimpan bit pattern seperti heksadecimal."
+    ],
+    [
+      "float, numerik, bilangan pecahan, desimal, floating",
+      "**FLOAT** merupakan tipe data yang menyimpan data bilangan pecahan positif dan negatif dengan presisi tunggal."
+    ],
+    [
+      "single, numerik, bilangan bulat, integer",
+      "**SINGLE** merupakan tipe data yang terdiri dari angka -3,402823E38 s/d -1.40129E-45 untuk bilangan negative dan dari 1.40129E-45 s/d 3.402823E38 untuk bilangan positif dan bilangan nol. Memiliki 7 jumlah decimal dengan ukuran 4 bytes."
+    ],
+    [
+      "double, desimal, bilangan pecahan, desimal",
+      "**DOUBLE** merupakan tipe data yang menyimpan data bilangan pecahan positif dan negatif dengan presisi tunggal."
+    ],
+    [
+      "real, double, bilangan pecahan, desimal",
+      "**REAL** merupakan tipe data yang memiliki ukuran 8 byte dan termasuk sinonim dari DOUBLE yaitu tipe data yang menyimpan data bilangan pecahan positif dan negatif dengan presisi tunggal."
+    ],
+    [
+      "decimal, desimal, pecahan, numerik, bilangan",
+      "**DECIMAL** Terdiri dari angka -10^38-1 s/d 10^38-1 ( untuk SQL Server Database) dan -10^28-1 s/d 10^28-1 ( untuk Ms Access Database). JUmlah decimal 18 dan mempunyai ukutan 12 byte."
+    ],
+    [
+      "numerik, bilangan",
+      "**NUMERIC** (M,D) Ukuran M byte. Sinonim dari DECIMAL, misalnya NUMERIC(5,2) dapat digunakan untuk menyimpan bilangan -99,99 s/d 99,99."
+    ],
+    [
+      "date time, tanggal, waktu, tahun, bulan, date, year, month, time, menit, detik",
+      "**DATETIME** merupakan tipe data tanggal yang memiliki ukuran 8 byte. Kombinasi tanggal dan jam, dengan jangkauan dari ‘1000-01-01 00:00:00’ s/d ‘9999-12-31 23:59:59’."
+    ],
+    [
+      "date, tanggal, tahun, bulan, date, year, month",
+      "**DATE** merupakan tipe data tanggal yang memiliki 3 Byte. Tanggal dengan jangkauan dari ‘1000-01-01’ s/d ‘9999-12-31’."
+    ],
+    [
+      "date time, tanggal, waktu, tahun, bulan, date, year, month, time, menit, detik",
+      "**TIMESTAMP** merupakan tipe data tanggal yang memiliki 4 byte. Kombinasi tanggal dan jam, dengan jangkauan dari ‘1970-01-01 00:00:00’ s/d ‘2037’."
+    ],
+    [
+      "time, waktu, jam, menit, detik",
+      "**TIME** merupakan tipe data tanggal yang memiliki 3 byte. Waktu dengan jangkauan dari ‘839:59:59’ s/d ‘838:59:59’."
+    ],
+    [
+      "year, tahun",
+      "**YEAR** merupakan tipe data tanggal yang memiliki 1 byte. Data tahun antara 1901 s/d 2155."
+    ],
+    [
+      "char, karakter",
+      "**CHAR** merupakan tipe data yang menyimpan string dengan ukuran tetap dan mampu menangani data hingga 255 karakter. Tipe data CHAR mengharuskan untuk memasukkan data yang telah ditentukan oleh kita."
+    ],
+    [
+      "varchar, karakter",
+      "**VARCHAR** merupakan tipe data yang menyimpan string dengan ukuran dinamis dan mampu menangani data hingga 255 karakter atau lebih. Tipe data VARCHAR tidak mengharuskan untuk memasukkan data yang telah ditentukan oleh kita. "
+    ],
+    [
+      "tinyblob, tinytext,",
+      "**TINYBLOB**, **TINYTEXT** merupakan Digunakan untuk menyimpan data biner seperti file, image, dan suara. Tipe data ini mempunyai jangkauan 255 byte. "
+    ],
+    [
+      "blob, text",
+      "**BLOB**, **TEXT** merupakan tipe data yang digunakan untuk menyimpan data biner seperti files, images, suara, dll. Tipe data ini mempunyai jangkauan 216-1 byte."
+    ],
+    [
+      "mediumblob, mediumtext",
+      "**MEDIUMBLOB**, **MEDIUMTEXT** merupakan tipe data yang digunakan untuk menyimpan data biner seperti file, image, dan suara. Tipe data ini mempunyai jangkauan 244-1 byte."
+    ],
+    [
+      "longblob, longtext",
+      "**LONGBLOB**, **LONGTEXT** merupakan tipe data yang digunakan untuk menyimpan data biner seperti file, image, dan suara. Tipe data ini mempunyai jangkauan 232-1 byte."
+    ],
+    [
+      "enum",
+      "**ENUM**(‘nilai1’,’nilai2’,…,’nilaiN’) merupakan tipe data yang memiliki ukuran 1 atau 2 byte. Tergantung jumlah nilai enumerasinya (maksimum 65535 nilai)"
+    ],
+    [
+      "set",
+      "**SET**(‘nilai1’,’nilai2’,…,’nilaiN’) merupakan tipe data yang memiliki ukuran  1,2,3,4 atau 8 byte, tergantung jumlah anggota himpunan (maksimum 64 anggota)."
+    ],
+    [
+      "byte",
+      "**BYTE** merupakan tipe data yang terdiri dari angka 0 – 255 ( tidak ada pecahan ) Jumalh decimal tidak ada. Ukuran 1 byte."
+    ]
+  ]
+}
