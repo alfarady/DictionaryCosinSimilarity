@@ -1,5 +1,5 @@
 from logging import log
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 from flask_assets import Environment, Bundle
 from numpy.testing._private.utils import measure
 from core.SemanticMeasure import SemanticMeasure
@@ -17,6 +17,14 @@ def predict(query):
 
     data = measure.similarity_query(query)
     prediction = {"status": 200, "data": data, "totalData": len(measure.documents)}
+    return jsonify(prediction)
+
+@app.route('/scoring', methods=['POST'])
+def predict():
+    dataForm = request.get_json()
+
+    data = measure.walid_similarity_query(dataForm.answer, dataForm.key)
+    prediction = {"status": 200, "data": data}
     return jsonify(prediction)
 
 def main():

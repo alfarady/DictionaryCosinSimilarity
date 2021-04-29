@@ -22,7 +22,7 @@ class NotReadyError(Exception):
     pass
 
 class SemanticMeasure:
-    default_model = "../cc.id.300.bin"
+    default_model = "../../cc.id.300.bin"
     model_ready = False
     corpus = []
     documents = list()
@@ -132,6 +132,36 @@ class SemanticMeasure:
                     res.append(temp)
 
             return res
+
+        else:
+            raise NotReadyError('Word embedding model is not ready.')
+
+    def walid_similarity_query(self, answer: str, key: str):
+        if len(answer) == 0 or len(key) == 0:
+            return False
+
+        if self.model_ready:
+            documents = [answer, key]
+            
+            if self.verbose:
+                print(f'{len(documents)} documents loaded and ready to preprocess')
+
+            corpus = [self.preprocess(document) for document in documents]
+            
+            if self.verbose:
+                print(f'{len(corpus)} documents loaded into corpus')
+            
+            dictionary = Dictionary(corpus)
+            tfidf = TfidfModel(dictionary=dictionary)
+            similarity_matrix = SparseTermSimilarityMatrix(self.similarity_index, dictionary, tfidf)
+
+            answer_bow = dictionary.doc2bow(self.preprocess(answer))
+            key_bow = dictionary.doc2bow(self.preprocess(key))
+            
+            # Measure soft cosine similarity
+            scores = similarity_matrix.inner_product(answer_bow, key_bow, normalized=True)
+
+            return scores
 
         else:
             raise NotReadyError('Word embedding model is not ready.')
