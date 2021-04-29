@@ -1,7 +1,6 @@
 from app import app, measure
-from core.CosinMeasure import CosineMeasure
+from core.SemanticMeasure import SemanticMeasure
 
 if __name__ == "__main__":
-    measure = CosineMeasure()
-    measure.prepare_dataset()
+    measure = SemanticMeasure(verbose=True)
     app.run()
