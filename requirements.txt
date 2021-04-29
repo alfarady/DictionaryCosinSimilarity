@@ -1,3 +1,8 @@
 Flask==1.1.2
 transformers==3.4.0
 torch==1.7.1
+numpy~=1.18
+scikit-learn~=0.22
+gensim~=3.8
+nltk~=3.4
+jupyterlab
